@@ -40,7 +40,7 @@ describe IO::Event.const_get(:Interrupt) do
 	
 	with "test scheduler" do
 		it "can be used to wake up a fiber blocked in `Thread#join`" do
-			skip_unless_method_defined(:fork, Process.singleton_class)
+			skip "Process.fork is not supported!" unless Process.respond_to?(:fork)
 			
 			10.times do
 				r, w = IO.pipe

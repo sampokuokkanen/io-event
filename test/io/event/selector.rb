@@ -1010,7 +1010,7 @@ IO::Event::Selector.constants.each do |name|
 			end
 			
 			it "is closed in a forked child" do
-				skip_unless_method_defined(:fork, Process.singleton_class)
+				skip "Process.fork is not supported!" unless Process.respond_to?(:fork)
 				
 				begin
 					inherited_selector = subject.new(loop)
